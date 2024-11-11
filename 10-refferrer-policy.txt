@@ -1,0 +1,14 @@
+When a user navigates to a site via a hyperlink or a website loads an external resource, browsers inform the destination site of the origin of the requests through the use of the HTTP Referer (sic) header. Although this can be useful for a variety of purposes, it can also place the privacy of users at risk. HTTP Referrer Policy allows sites to have fine-grained control over how and when browsers transmit the HTTP Referer header.
+
+In normal operation, if a page at https://example.com/page.html contains <img src="https://not.example.com/image.jpg">, then the browser will send a request like this:
+
+GET /image.jpg HTTP/1.1
+Host: not.example.com
+Referer: https://example.com/page.html
+
+In addition to the privacy risks that this entails, the browser may also transmit internal-use-only URLs that it may not have intended to reveal. If you as the site operator want to limit the exposure of this information, you can use HTTP Referrer Policy to either eliminate the Referer header or reduce the amount of information that it contains.
+Directives
+    no-referrer: never send the Referer header
+    same-origin: send referrer, but only on requests to the same origin
+    strict-origin: send referrer to all origins, but only the URL without the path (e.g. https://example.com/)
+    strict-origin-when-cross-origin: send full referrer on same origin, URL without the path on foreign origin

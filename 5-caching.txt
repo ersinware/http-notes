@@ -1,0 +1,64 @@
+||| Controlling caching
+
+The Cache-Control header
+The Cache-Control HTTP/1.1 general-header field is used to specify directives for caching mechanisms in both requests and responses. Use this header to define your caching policies with the variety of directives it provides.
+
+//
+
+No caching
+The cache should not store anything about the client request or server response. A request is sent to the server and a full response is downloaded each and every time.
+Cache-Control: no-store
+
+//
+
+Cache but revalidate
+A cache will send the request to the origin server for validation before releasing a cached copy.
+Cache-Control: no-cache
+
+Private and public caches
+The "public" directive indicates that the response may be cached by any cache. This can be useful if pages with HTTP authentication or response status codes that aren't normally cacheable should now be cached.
+    public - indicates that the response may be cached by any cache. That means that every layer that your response passes through is allowed to cache your content and serve it. This is the setting you want for most of your content representing articles, blogs, 'static' pages, product pages etc...
+On the other hand, "private" indicates that the response is intended for a single user only and must not be stored by a shared cache. A private browser cache may store the response in this case.
+Cache-Control: private
+Cache-Control: public
+
+//
+
+Expiration
+The most important directive here is max-age=<seconds>, which is the maximum amount of time in which a resource will be considered fresh. This directive is relative to the time that the response was sent by the server, and overrides the Expires header (if set).
+Cache-Control: max-age=31536000
+You can use a large max-age value for files that rarely or never change. This might include images, HTML, CSS files, and JavaScript files.
+
+//
+
+Validation
+When using the "must-revalidate" directive, the cache must verify the status of stale resources before using them. Expired resources should not be used. For more details, see the Cache validation section.
+Cache-Control: must-revalidate
+
+||| Freshness
+
+Once a resource is stored in a cache, it could theoretically be served by the cache forever. Caches have finite storage space so items are periodically removed from storage. This process is called cache eviction.
+
+Also, some resources may change on the server so the cache should be updated when this happens. As HTTP is a client-server protocol, servers can't contact caches and clients when a resource changes; they have to communicate an expiration time for the resource. Before this expiration time, the resource is fresh; after the expiration time, the resource becomes a stale resource.
+
+Eviction algorithms often privilege fresh resources over stale resources.
+
+Note that a stale resource is not evicted or ignored; when the cache receives a request for a stale resource, it forwards this request with an If-None-Match header to check if it is in fact still fresh. If so, the server returns a 304 (Not Modified) header without sending the body of the requested resource, saving some bandwidth.
+
+||| Cache validation
+
+When a cached resource's expiration time has been reached, the resource is either validated or fetched again. Validation can only occur if the server provided either a strong validator or a weak validator.
+Revalidation is triggered when the user presses the Reload button. It is also triggered during normal browsing if the cached response includes the "Cache-Control: must-revalidate" header. You can also use the cache validation preferences in the Advanced->Cache preferences panel, which offers the option to force a validation each time a resource is loaded.
+
+ETags
+The ETag response header is an opaque-to-the-useragent value that can be used as a strong validator. That means that a HTTP user-agent, such as the browser, does not know what this string represents and can't predict what its value would be. If the ETag header was part of the response for a resource, the client can issue an If-None-Match in the header of future requests to validate the cached resource.
+
+Last-Modified
+The Last-Modified response header can be used as a weak validator. It is considered weak because it only has 1-second resolution. If the Last-Modified header is present in a response, then the client can issue an If-Modified-Since request header to validate the cached document.
+When a validation request is made, the server can either ignore the validation request and respond with a normal 200 OK, or it can return 304 Not Modified (with an empty body) to instruct the browser to use its cached copy. The latter response can also include headers that update the expiration time of the cached resource.
+
+||| Varying responses -> GEREK OLDUĞUNU DÜŞÜNMÜYORUM
+
+||| conditional requests
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests#conditional_headers

@@ -1,0 +1,6 @@
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
+
+cookies'i secure ve httponly yap
+samesite -> lax kullan
+
+domain ve path header'larını da kullan

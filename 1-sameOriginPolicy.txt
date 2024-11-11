@@ -1,0 +1,105 @@
+The same-origin policy is a critical security mechanism that restricts how a document or script loaded by one origin can interact with a resource from another origin.
+
+//
+
+Two URLs have the same origin if the protocol, port (if specified), and host are the same for both.
+The following table gives examples of origin comparisons with the URL http://store.company.com/dir/page.html:
+URL 	                                            Outcome 	    Reason
+http://store.company.com/dir2/other.html 	        Same origin	    Only the path differs
+http://store.company.com/dir/inner/another.html     Same origin     Only the path differs
+https://store.company.com/page.html 	            Failure 	    Different protocol
+http://store.company.com:81/dir/page.html 	        Failure 	    Different port (http:// is port 80 by default)
+http://news.company.com/dir/page.html 	            Failure 	    Different host
+
+//
+
+Cross-origin network access
+
+The same-origin policy controls interactions between two different origins, such as when you use XMLHttpRequest or an <img> element. These interactions are typically placed into three categories:
+    Cross-origin writes are typically allowed. Examples are links, redirects, and form submissions. Some HTTP requests require preflight.
+    Cross-origin embedding is typically allowed. (Examples are listed below.)
+    Cross-origin reads are typically disallowed, but read access is often leaked by embedding. For example, you can read the dimensions of an embedded image, the actions of an embedded script, or the availability of an embedded resource.
+
+Here are some examples of resources which may be embedded cross-origin:
+    JavaScript with <script src="…"></script>. Error details for syntax errors are only available for same-origin scripts.
+    CSS applied with <link rel="stylesheet" href="…">. Due to the relaxed syntax rules of CSS, cross-origin CSS requires a correct Content-Type header. Restrictions vary by browser: Internet Explorer, Firefox, Chrome , Safari (scroll down to CVE-2010-0051) and Opera.
+    Images displayed by <img>.
+    Media played by <video> and <audio>.
+    External resources embedded with <object> and <embed>.
+    Fonts applied with @font-face. Some browsers allow cross-origin fonts, others require same-origin.
+    Anything embedded by <iframe>. Sites can use the X-Frame-Options header to prevent cross-origin framing.
+
+//
+
+TAM ANLAMADIM
+Inherited origins
+Scripts executed from pages with an about:blank or javascript: URL inherit the origin of the document containing that URL, since these types of URLs do not contain information about an origin server.
+For example, about:blank is often used as a URL of new, empty popup windows into which the parent script writes content (e.g. via the Window.open() mechanism). If this popup also contains JavaScript, that script would inherit the same origin as the script that created it.
+data: URLs get a new, empty, security context.
+
+//
+
+File origins
+Modern browsers usually treat the origin of files loaded using the file:/// schema as opaque origins. What this means is that if a file includes other files from the same folder (say), they are not assumed to come from the same origin, and may trigger CORS errors.
+Note that the URL specification states that the origin of files is implementation-dependent, and some browsers may treat files in the same directory or subdirectory as same-origin even though this has security implications.
+
+//
+
+Proper CORS Setup
+The modern browsers try to prevent the Cross-origin request forgery attack with a security mechanism aka SOP (Same Origin Policy).
+The CORS settings is going to open some restrictions of the SOP and relaxing that.
+I would Interpret The Proper CORS Setup to having :
+    a browser with SOP feature
+    allow cors headers to not be * or <request-origin-host> (just being the hosts which are trusted)
+
+//
+
+SOP Restrictions
+if any page requests for cross-origins, there are 3 policies:
+    write-request like: link, redirects, xhr, form submissions (allow) (Rule 1)
+    embedding-request like: <script>, <link>, <img>, <video>, <audio>, <object>, <embed>, @font-face, <iframe> (allow) (Rule 2)
+    read requests (disallow) (Rule 3)
+
+Among the above the first option (write-request) are subject to abuse for cross site request forgery.
+The SOP mechanism just ALLOWED these write requests
+Why?
+    for backward compatibility with the existing websites
+    convenient development & usage (just think if there exists a complex solution for a redirection what would happened!!! )
+The only help that the Browser SOP does for this step is to send a pre-flight request for the resource-changing (POST/PUT/...) XHR requests
+note: in future steps it will help more than this
+
+in the pre-flight request, the server sends the CORS Allow Header and browser finds out that if the resource changing request is allowed or not.
+for example: if there is a form with post method which change a resource on server, the CORS Allowance Header will get received from server, but resource on server already has been changed. (antidote after sohrab's death )
+    SOP will prevent CSRF attack on xhr requests & not the application/x-www-form-urlencoded requests
+    there can be a form on evil.com or a script can append a form in DOM and automatically sending that.
+
+or the xhr preflight itself may not prevent as we expected because:
+    in some browser it can be disabled because of performance (not having 2 requests)
+    if Origin header not set
+    Server may allow *
+    some bugs on preflight request expose the functionalities ...
+
+//
+
+CSRF-Token Mechanism
+CSRF token can be used on both form and xhr requests.
+    CSRF-token mechanism prevents the CSRF attack if only if CSRF Token not exposed to cross-origin malicious scripts
+but this scenario can be imaginable that: an script on malicious website:
+    first request for the form (aka edit form or delete form) & get the token
+    then send the token with application/x-www-form-urlencoded or xhr
+
+SOP Supports CSRF-token
+I have mentioned that SOP Restricts The Read request. and only allowed the read requests which are embeded.
+so SOP will prevent the CSRF-token to get exposed by an malicious script (getting the form & creating a fake form with the token) if:
+    Proper CORS Setup
+    the form cannot get embedded
+
+The SOP mechanism (with Rule #1) (Proper CORS setup) can prevent only CSRF xhr (can have some flaws in implementations) (cannot protect all scenarios)
+The CSRF-Token can protect CSRF Attack if the token hasn't got compromised
+The SOP mechanism (with Rule #3) can protect CSRF-token & CSRF-token protect users from CSRF-attack
+We should make attention to not compromise the CSRF-token with embedded resource Rule (Rule #2). (mostly iframe abuse)
+
+MDN How to block cross-origin access
+        To prevent cross-origin writes, check an unguessable token in the request — known as a Cross-Site Request Forgery (CSRF) token. You must prevent cross-origin reads of pages that require this token.
+        To prevent cross-origin reads of a resource, ensure that it is not embeddable. It is often necessary to prevent embedding because embedding a resource always leaks some information about it.
+        To prevent cross-origin embeds, ensure that your resource cannot be interpreted as one of the embeddable formats listed above. Browsers may not respect the Content-Type header. For example, if you point a tag at an HTML document, the browser will try to parse the HTML as JavaScript. When your resource is not an entry point to your site, you can also use a CSRF token to prevent embedding.

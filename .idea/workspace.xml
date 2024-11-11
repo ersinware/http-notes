@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="64c317ad-13ff-47a8-86ef-129d67564610" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/component-test/src/lib/components/inputs/SelectModal.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-learning/component-test/src/lib/components/inputs/SelectModal.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/component-test/src/lib/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-learning/component-test/src/lib/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-learning/responsive-images/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-learning/responsive-images/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-learning/responsive-images/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/src/routes/api/upload-image/+server.js" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-learning/responsive-images/src/routes/api/upload-image/+server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/src/routes/auto-test/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-learning/responsive-images/src/routes/auto-test/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/src/routes/manual-test/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/../svelte-learning/responsive-images/src/routes/manual-test/+page.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/blank.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/uploaded-images/auto-test/auto-test-d1-w533.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/uploaded-images/auto-test/auto-test-d1-w746.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/uploaded-images/auto-test/auto-test-d1-w960.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/uploaded-images/auto-test/auto-test-d2-w1066.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/uploaded-images/auto-test/auto-test-d2-w1492.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/uploaded-images/auto-test/auto-test-d2-w1920.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/uploaded-images/auto-test/auto-test-d3-w1599.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/uploaded-images/auto-test/auto-test-d3-w2238.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../svelte-learning/responsive-images/static/uploaded-images/auto-test/auto-test-d3-w2880.webp" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="27FwBhPuOLRvJ102KtWXB2tg1vA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/ersinware/WebStormProjects/frontend/html",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/sonrasirala" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="64c317ad-13ff-47a8-86ef-129d67564610" name="Changes" comment="" />
+      <created>1679238997117</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1679238997117</updated>
+      <workItem from="1679238998664" duration="5283000" />
+      <workItem from="1679932131923" duration="7649000" />
+      <workItem from="1680020085504" duration="547000" />
+      <workItem from="1681060772047" duration="22000" />
+      <workItem from="1684248865587" duration="687000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

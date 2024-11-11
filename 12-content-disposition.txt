@@ -1,0 +1,3 @@
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition
+
+Indicates if the resource transmitted should be displayed inline (default behavior without the header), or if it should be handled like a download and the browser should present a "Save As" dialog.
